@@ -37,7 +37,7 @@ public class MyUIUtils {
 		we.sendKeys(ValueToInput);
 	}
 	
-	public void click(WebElement we) throws IOException, InterruptedException{
+	public static void click(WebElement we) throws IOException, InterruptedException{
 //		WebElement we=getWebElement(ORElementName);
 		//System.out.println(we.getText());
 		we.click();

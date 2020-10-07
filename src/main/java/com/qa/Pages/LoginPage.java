@@ -14,15 +14,18 @@ import com.qa.util.MyUIUtils;
 public class LoginPage extends BaseClass {
 	
 	
-	@FindBy(xpath="//input[@name='username']")
+	@FindBy(xpath="//a[@class='login']")
+	public WebElement signin_link;
+	
+	@FindBy(xpath="//input[@id='email']")
 	public WebElement Login_UserName_ED;
 	
 	
-	@FindBy(xpath="//input[@name='password']")
+	@FindBy(xpath="//input[@id='passwd']")
 	public WebElement Login_Password_ED;
 	
 	
-	@FindBy(xpath="//button[@class = 'btn btn-primary btn-block']")
+	@FindBy(xpath="//button[@id='SubmitLogin']")
 	public WebElement Login_Login_BT;
 
 	@FindBy(xpath="//div[@class='loader']")
@@ -36,9 +39,21 @@ public class LoginPage extends BaseClass {
 	
 	public void ValidLogin() throws IOException, InterruptedException{
 		Thread.sleep(5000);
-		MyUIUtils.Input(Login_UserName_ED,ExcelDataProvider.getStringData("Login",0,0));
-		MyUIUtils.Input(Login_Password_ED,ExcelDataProvider.getStringData("Login",0,1));
-		Login_Login_BT.click();
+		MyUIUtils.click(signin_link);
+	MyUIUtils.Input(Login_UserName_ED,ExcelDataProvider.getStringData("Login",0,0));
+	MyUIUtils.Input(Login_Password_ED,ExcelDataProvider.getStringData("Login",0,1));
+	Login_Login_BT.click();
+	Thread.sleep(5000);
+	}
+	
+	
+	public void inValidLogin() throws IOException, InterruptedException{
+		Thread.sleep(5000);
+		MyUIUtils.click(signin_link);
+	MyUIUtils.Input(Login_UserName_ED,ExcelDataProvider.getStringData("Login",0,2));
+	MyUIUtils.Input(Login_Password_ED,ExcelDataProvider.getStringData("Login",0,3));
+	Login_Login_BT.click();
+	Thread.sleep(5000);
 	}
 	
 	public String validateLoginPageTitle(){
